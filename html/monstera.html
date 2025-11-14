@@ -6,31 +6,48 @@
         <link rel="icon" href="/img/icon.png">
     </head>
     <body>
-        <nav class="navbar">
-                <div class="nav-right">
-                    <a href="index.html"><img src="/img/logo.png"></a>
-                </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-right">
+            <a href="index.html"><img src="/img/logo.png" alt="Plantoria logo"></a>
+        </div>
 
-                <div class="nav-left">
-                    <button class="fav-btn"><img src="/img/cart_logo.png" alt="Profile"></button>
-                </div>
-  
-            </nav>
-            
-<a href="index.html" class="back">← Back</a>
+        <div class="nav-left">
+            <a href="cart.html">
+                <button class="fav-btn"><img src="/img/cart_logo.png" alt="Cart"></button>
+            </a>
+        </div>
+    </nav>
 
-<div class="plant-page">
-  <div class="left">
-    <img src="../img/monstera.jpg" alt="Monstera" >
-  </div>
+    <a href="indoor.html" class="back">← Back to indoor plants</a>
 
-  <div class="right">
-    <h1>Monstera</h1>
-    <p><strong>Description:</strong> Monstera is a tropical plant known for its large, split leaves. It adds a lush look to any room.</p>
-    <p><strong>Watering:</strong> Once every 7 days.</p>
-    <p><strong>Lighting:</strong> The plant needs bright, filtered light such as window light or artificial room lighting.</p>
-    <p><strong>Price:</strong> 85 Riyal</p>
-  </div>
-</div>
-    </body>
+    <!-- NEW layout -->
+    <section class="plant-detail">
+        <div class="plant-hero">
+            <img src="/img/monstera.jpg" alt="Monstera" class="plant-photo">
+            <span class="plant-chip">Indoor • Easy care</span>
+        </div>
+
+        <div class="plant-info">
+            <h1>Monstera</h1>
+
+            <div class="plant-meta">
+                <span class="price-badge">85 Riyal</span>
+                <span class="tag">Light: Bright, filtered</span>
+            </div>
+
+            <dl>
+                <dt>Description</dt>
+                <dd>Monstera is a tropical plant known for its large, split leaves. It adds a lush, dramatic look to any room.</dd>
+
+                <dt>Watering</dt>
+                <dd>Once every 7 days, letting the top of the soil dry slightly between waterings.</dd>
+
+                <dt>Lighting</dt>
+                <dd>Bright, filtered light such as window light or artificial room lighting. Avoid strong direct sun.</dd>
+            </dl>
+        </div>
+    </section>
+</body>
+
 </html>

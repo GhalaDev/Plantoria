@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Indoor Plants</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" href="/img/icon.png">
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="nav-right">
+        <a href="index.html"><img src="/img/logo.png" alt="logo"></a>
+      </div>
+
+      <div class="nav-left">
+        <a href="cart.html">
+          <button class="fav-btn"><img src="/img/cart_logo.png" alt="Cart"></button>
+        </a>
+      </div>
+    </nav>
+    <a href="index.html" class="back">← Back</a>
+
+    <h2>Where every plant finds glory </h2>
+
+    <div class="cards">
+      <!-- Monstera -->
+      <div class="card">
+        <h2>Monstera</h2>
+        <img src="/img/monstera.jpg" alt="Monstera">
+        <div class="buybar">
+          <button 
+            class="cart" 
+            data-id="monstera" 
+            data-name="Monstera" 
+            data-price="85" 
+            data-image="/img/monstera.jpg">
+            <img src="/img/cart.png" alt="Add to cart">
+            <span class="price">85 SAR</span>
+          </button>
+          
+          <a href="monstera.html" class="details">Details</a>
+        </div>
+      </div>
+
+      <!-- Pothos -->
+      <div class="card">
+        <h2>Pothos</h2>
+        <img src="/img/pothos.jpg" alt="Pothos">
+        <div class="buybar">
+          <button 
+            class="cart" 
+            data-id="pothos"
+            data-name="Pothos" 
+            data-price="45" 
+            data-image="/img/pothos.jpg">
+            <img src="/img/cart.png" alt="Add to cart">
+            <span class="price">45 SAR</span>
+          </button>
+          
+          <a href="pothos.html" class="details">Details</a>
+        </div>
+      </div>
+
+      <!-- Schefflera -->
+      <div class="card">
+        <h2>Schefflera</h2>
+        <img src="/img/Schefflera.jpg" alt="Schefflera">
+        <div class="buybar">
+          <button 
+            class="cart" 
+            data-id="schefflera" 
+            data-name="Schefflera" 
+            data-price="110" 
+            data-image="/img/Schefflera.jpg">
+            <img src="/img/cart.png" alt="Add to cart">
+            <span class="price">110 SAR</span>
+          </button>
+          
+          <a href="schefflera.html" class="details">Details</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- سكربت إضافة للسلة (النسخة البسيطة) -->
+    <script>
+      function getCart() {
+        var data = localStorage.getItem('cart');
+        return data ? JSON.parse(data) : [];
+      }
+
+      function saveCart(c) {
+        localStorage.setItem('cart', JSON.stringify(c));
+      }
+
+      function addToCart(item) {
+        var cart = getCart();
+        var idx = -1;
+        for (var i = 0; i < cart.length; i++) {
+          if (cart[i].id === item.id) { idx = i; break; }
+        }
+        var qty = item.qty ? item.qty : 1;
+        if (idx >= 0) {
+          cart[idx].qty += qty;
+        } else {
+          cart.push({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            image: item.image,
+            qty: qty
+          });
+        }
+        saveCart(cart);
+        alert(item.name + ' added to cart');
+      }
+
+      var cartButtons = document.querySelectorAll('.cart');
+      for (var b = 0; b < cartButtons.length; b++) {
+        cartButtons[b].onclick = function () {
+          addToCart({
+            id: this.getAttribute('data-id'),
+            name: this.getAttribute('data-name'),
+            price: parseFloat(this.getAttribute('data-price') || '0'),
+            image: this.getAttribute('data-image'),
+            qty: 1
+          });
+          
+        };
+      }
+    </script>
+  </body>
+</html>

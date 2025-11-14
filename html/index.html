@@ -1,131 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Plantoria</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" href="/img/icon.png">
-  </head>
+</head>
 
-  <body>
+<body>
+
+    <!-- Navbar -->
     <nav class="navbar">
-      <div class="nav-right">
-        <img src="/img/logo.png" alt="logo">
-      </div>
+        <div class="nav-right">
+            <img src="/img/logo.png" alt="logo">
+        </div>
 
-      <div class="nav-left">
-        <a href="cart.html">
-          <button class="fav-btn"><img src="/img/cart_logo.png" alt="Cart"></button>
-        </a>
-      </div>
+        <div class="nav-left">
+            <a href="cart.html">
+                <button class="fav-btn">
+                    <img src="/img/cart_logo.png" alt="Cart">
+                </button>
+            </a>
+        </div>
     </nav>
 
-    <h2>Where every plant finds glory </h2>
+    <!-- Title -->
+    <h2>Where every plant finds glory</h2>
 
-    <div class="cards">
-      <!-- Monstera -->
-      <div class="card">
-        <h2>Monstera</h2>
-        <img src="/img/monstera.jpg" alt="Monstera">
-        <div class="buybar">
-          <button 
-            class="cart" 
-            data-id="monstera" 
-            data-name="Monstera" 
-            data-price="85" 
-            data-image="/img/monstera.jpg">
-            <img src="/img/cart.png" alt="Add to cart">
-            <span class="price">85 SAR</span>
-          </button>
-          
-          <a href="monstera.html" class="details">Details</a>
-        </div>
-      </div>
+    <!-- Slider / Gallery -->
+    <div class="slider">
 
-      <!-- Pothos -->
-      <div class="card">
-        <h2>Pothos</h2>
-        <img src="/img/pothos.jpg" alt="Pothos">
-        <div class="buybar">
-          <button 
-            class="cart" 
-            data-id="pothos"
-            data-name="Pothos" 
-            data-price="45" 
-            data-image="/img/pothos.jpg">
-            <img src="/img/cart.png" alt="Add to cart">
-            <span class="price">45 SAR</span>
-          </button>
-          
-          <a href="pothos.html" class="details">Details</a>
-        </div>
-      </div>
+        <button class="slide-btn prev">&#10094;</button>
 
-      <!-- Schefflera -->
-      <div class="card">
-        <h2>Schefflera</h2>
-        <img src="/img/Schefflera.jpg" alt="Schefflera">
-        <div class="buybar">
-          <button 
-            class="cart" 
-            data-id="schefflera" 
-            data-name="Schefflera" 
-            data-price="110" 
-            data-image="/img/Schefflera.jpg">
-            <img src="/img/cart.png" alt="Add to cart">
-            <span class="price">110 SAR</span>
-          </button>
-          
-          <a href="schefflera.html" class="details">Details</a>
+        <div class="slides">
+            <!-- Slide 1: Indoor -->
+            <div class="slide">
+                <img src="/img/monstera.jpg" alt="Indoor plants">
+                <div class="slide-content">
+                    <h3>Indoor Plants</h3>
+                    <p>Brighten your home with easy-care indoor plants.</p>
+                    <a href="indoor.html" class="slide-link">Browse Indoor</a>
+                </div>
+            </div>
+
+            <!-- Slide 2: Outdoor -->
+            <div class="slide">
+                <img src="/img/hibiscus.jpg" alt="Outdoor plants">
+                <div class="slide-content">
+                    <h3>Outdoor Plants</h3>
+                    <p>Colorful flowers and strong outdoor greenery.</p>
+                    <a href="outdoor.html" class="slide-link">Browse Outdoor</a>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <button class="slide-btn next">&#10095;</button>
     </div>
 
-    <!-- سكربت إضافة للسلة (النسخة البسيطة) -->
     <script>
-      function getCart() {
-        var data = localStorage.getItem('cart');
-        return data ? JSON.parse(data) : [];
-      }
+      // بسيط مرّة: نغيّر السلايد بالترجمة فقط
+      var currentSlide = 0;
+      var slides = document.querySelectorAll('.slide');
+      var slidesWrapper = document.querySelector('.slides');
 
-      function saveCart(c) {
-        localStorage.setItem('cart', JSON.stringify(c));
-      }
-
-      function addToCart(item) {
-        var cart = getCart();
-        var idx = -1;
-        for (var i = 0; i < cart.length; i++) {
-          if (cart[i].id === item.id) { idx = i; break; }
+      function showSlide(index) {
+        if (index < 0) {
+          index = slides.length - 1;
         }
-        var qty = item.qty ? item.qty : 1;
-        if (idx >= 0) {
-          cart[idx].qty += qty;
-        } else {
-          cart.push({
-            id: item.id,
-            name: item.name,
-            price: item.price,
-            image: item.image,
-            qty: qty
-          });
+        if (index >= slides.length) {
+          index = 0;
         }
-        saveCart(cart);
-        alert(item.name + ' added to cart');
+        currentSlide = index;
+        slidesWrapper.style.transform = 'translateX(' + (-100 * currentSlide) + '%)';
       }
 
-      var cartButtons = document.querySelectorAll('.cart');
-      for (var b = 0; b < cartButtons.length; b++) {
-        cartButtons[b].onclick = function () {
-          addToCart({
-            id: this.getAttribute('data-id'),
-            name: this.getAttribute('data-name'),
-            price: parseFloat(this.getAttribute('data-price') || '0'),
-            image: this.getAttribute('data-image'),
-            qty: 1
-          });
-          
-        };
-      }
+      document.querySelector('.next').onclick = function () {
+        showSlide(currentSlide + 1);
+      };
+
+      document.querySelector('.prev').onclick = function () {
+        showSlide(currentSlide - 1);
+      };
+
+      // سلايد البداية
+      showSlide(0);
     </script>
-  </body>
+
+</body>
 </html>
