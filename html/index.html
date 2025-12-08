@@ -28,30 +28,28 @@
 </nav>
 
 
-    <!-- Title -->
     <h2>Where every plant finds glory</h2>
 
-    <!-- Slider / Gallery -->
     <div class="slider">
-
         <button class="slide-btn prev">&#10094;</button>
 
+
         <div class="slides">
-            <!-- Slide 1: Indoor -->
+            <!--indoor-->
             <div class="slide">
                 <img src="/img/monstera.jpg" alt="Indoor plants">
                 <div class="slide-content">
-                    <h3>Indoor Plants</h3>
-                    <p>Brighten your home with easy-care indoor plants.</p>
+                    <h2>Indoor Plants</h2>
+                    <p>Brighten your home with easy care indoor plants.</p>
                     <a href="indoor.html" class="slide-link">Browse Indoor</a>
                 </div>
             </div>
 
-            <!-- Slide 2: Outdoor -->
+            <!-- outdoor -->
             <div class="slide">
                 <img src="/img/hibiscus.jpg" alt="Outdoor plants">
                 <div class="slide-content">
-                    <h3>Outdoor Plants</h3>
+                    <h2>Outdoor Plants</h2>
                     <p>Colorful flowers and strong outdoor greenery.</p>
                     <a href="outdoor.html" class="slide-link">Browse Outdoor</a>
                 </div>
@@ -62,10 +60,10 @@
     </div>
 
     <script>
-      // بسيط مرّة: نغيّر السلايد بالترجمة فقط
       var currentSlide = 0;
       var slides = document.querySelectorAll('.slide');
       var slidesWrapper = document.querySelector('.slides');
+
 
       function showSlide(index) {
         if (index < 0) {
@@ -78,6 +76,7 @@
         slidesWrapper.style.transform = 'translateX(' + (-100 * currentSlide) + '%)';
       }
 
+      
       document.querySelector('.next').onclick = function () {
         showSlide(currentSlide + 1);
       };
@@ -86,7 +85,6 @@
         showSlide(currentSlide - 1);
       };
 
-      // سلايد البداية
       showSlide(0);
     </script>
 

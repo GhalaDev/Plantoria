@@ -29,31 +29,33 @@
 
 
   <h2 style="text-align:center; margin:30px;">Your Cart </h2>
-<section class="cart-panel">
-  <div class="cart-container">
-    <div class="cart-item">
-      <img src="/img/monstera.jpg" alt="Monstera">
-      <div class="cart-info">
-        <h3>Monstera</h3>
-        <p>79 SAR</p>
+  <section class="cart-panel">
+    <div class="cart-container">
+      <div class="cart-item">
+        <img src="" alt="">
+        <div class="cart-info">
+          <h3></h3>
+          <p></p>
+        </div>
+        <button class="remove">Remove</button>
       </div>
-      <button class="remove">Remove</button>
     </div>
 
-  </div>
+    <div class="cart-total">
+      <h3>Total: <span>0 SAR</span></h3>
+    </div>
 
-  <div class="cart-total">
-    <h3>Total: <span>79 SAR</span></h3>
-  </div>
-</section>
+  </section>
 
 
 
 <script>
+
   function getCart() {
     var data = localStorage.getItem('cart');
     return data ? JSON.parse(data) : [];
   }
+  
   function saveCart(c) { 
     localStorage.setItem('cart', JSON.stringify(c)); 
   }

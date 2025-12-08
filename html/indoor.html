@@ -31,6 +31,7 @@
     <h2>Indoor Plants </h2>
 
     <div class="cards">
+
       <!-- Monstera -->
       <div class="card">
         <h2>Monstera</h2>
@@ -89,8 +90,8 @@
       </div>
     </div>
 
-    <!-- سكربت إضافة للسلة (النسخة البسيطة) -->
     <script>
+
       function getCart() {
         var data = localStorage.getItem('cart');
         return data ? JSON.parse(data) : [];
@@ -121,6 +122,8 @@
         saveCart(cart);
         alert(item.name + ' added to cart');
       }
+
+
 
       var cartButtons = document.querySelectorAll('.cart');
       for (var b = 0; b < cartButtons.length; b++) {
