@@ -361,7 +361,6 @@ h2 {
   margin-top: 8px;
 }
 
-/* زر الحذف */
 .remove {
   background: #e74c3c;
   color: white;
@@ -375,7 +374,6 @@ h2 {
   background: #c0392b;
 }
 
-/* رسالة السلة الفارغة */
 .empty {
   color: #2f7d32;
   background: rgba(225, 255, 217, 0.9);

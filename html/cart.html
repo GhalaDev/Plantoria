@@ -55,7 +55,7 @@
     var data = localStorage.getItem('cart');
     return data ? JSON.parse(data) : [];
   }
-  
+
   function saveCart(c) { 
     localStorage.setItem('cart', JSON.stringify(c)); 
   }
@@ -97,8 +97,10 @@
     var totalEl = document.querySelector('.cart-total span');
     if (!wrap) return;
 
+    <!--f cart is empty-->
     if (cart.length === 0) {
-      wrap.innerHTML = '<p class="empty">Your cart is empty.</p>';      if (totalEl) totalEl.textContent = '0 SAR';
+      wrap.innerHTML = '<p class="empty">Your cart is empty.</p>';      
+      if (totalEl) totalEl.textContent = '0 SAR';
       return;
     }
 
