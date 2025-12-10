@@ -2,38 +2,38 @@
 <html>
 <head>
     <title>Schefflera</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" href="/img/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/icon.png">
 </head>
 
 <body>
     <!-- Navbar -->
     <nav class="navbar">
     <div class="nav-right">
-        <a href="index.html"><img src="/img/logo.png" class="logo"></a>
+        <a href="index.html"><img src="img/logo.png" class="logo"></a>
     </div>
 
     <div class="nav-center">
-        <a href="index.html">Home</a>
-        <a href="indoor.html">Indoor</a>
-        <a href="outdoor.html">Outdoor</a>
-        <a href="accessories.html">Accessories</a>
+        <a href="index.php">Home</a>
+        <a href="indoor.php">Indoor</a>
+        <a href="outdoor.php">Outdoor</a>
+        <a href="accessories.php">Accessories</a>
     </div>
 
     <div class="nav-left">
-        <a href="cart.html">
-            <img src="/img/cart_logo.png" class="cart-icon">
+        <a href="cart.php">
+            <img src="img/cart_logo.png" class="cart-icon">
         </a>
     </div>
 </nav>
 
 
-    <a href="indoor.html" class="back">← Back to indoor plants</a>
+    <a href="indoor.php" class="back">← Back to indoor plants</a>
 
     <!-- Schefflera detail -->
     <section class="plant-detail">
         <div class="plant-hero">
-            <img src="/img/Schefflera.jpg" alt="Schefflera" class="plant-photo">
+            <img src="img/Schefflera.jpg" alt="Schefflera" class="plant-photo">
             <span class="plant-chip">Indoor • Moderate care</span>
         </div>
 

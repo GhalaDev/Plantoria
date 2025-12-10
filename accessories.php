@@ -1,32 +1,46 @@
+<?php
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "plantoria"; 
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Accessories & Tools</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" href="/img/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/icon.png">
 </head>
 
 <body>
 
     <nav class="navbar">
     <div class="nav-right">
-        <a href="index.html"><img src="/img/logo.png" class="logo"></a>
+        <a href="index.php"><img src="img/logo.png" class="logo"></a>
     </div>
 
     <div class="nav-center">
-        <a href="index.html">Home</a>
-        <a href="indoor.html">Indoor</a>
-        <a href="outdoor.html">Outdoor</a>
-        <a href="accessories.html">Accessories</a>
+        <a href="index.php">Home</a>
+        <a href="indoor.php">Indoor</a>
+        <a href="outdoor.php">Outdoor</a>
+        <a href="accessories.php">Accessories</a>
     </div>
 
     <div class="nav-left">
-        <a href="cart.html">
-            <img src="/img/cart_logo.png" class="cart-icon">
+        <a href="cart.php">
+            <img src="img/cart_logo.png" class="cart-icon">
         </a>
     </div>
 </nav>
-<a href="index.html" class="back">← Back</a>
+<a href="index.php" class="back">← Back</a>
 
 
     <h2>Accessories & Gardening Tools</h2>
@@ -36,7 +50,7 @@
         <!-- Watering Can -->
         <div class="card">
             <h2>Watering Can</h2>
-            <img src="/img/watercan.jpg" alt="Watering Can">
+            <img src="img/watercan.jpg" alt="Watering Can">
 
             <div class="buybar">
                 <button
@@ -44,9 +58,9 @@
                     data-id="watercan"
                     data-name="Watering Can"
                     data-price="25"
-                    data-image="/img/watercan.jpg"
+                    data-image="img/watercan.jpg"
                 >
-                    <img src="/img/cart.png">
+                    <img src="img/cart.png">
                     <span class="price">25 SAR</span>
                 </button>
 
@@ -57,7 +71,7 @@
         <!-- Gardening Shears -->
         <div class="card">
             <h2>Shears</h2>
-            <img src="/img/shears.jpg" alt="Shears">
+            <img src="img/shears.jpg" alt="Shears">
 
             <div class="buybar">
                 <button
@@ -67,7 +81,7 @@
                     data-price="35"
                     data-image="/img/shears.jpg"
                 >
-                    <img src="/img/cart.png">
+                    <img src="img/cart.png">
                     <span class="price">35 SAR</span>
                 </button>
 
@@ -78,7 +92,7 @@
         <!-- Soil Bag -->
         <div class="card">
             <h2>Soil Bag</h2>
-            <img src="/img/soil.jpg" alt="Soil Bag">
+            <img src="img/soil.jpg" alt="Soil Bag">
 
             <div class="buybar">
                 <button
@@ -88,7 +102,7 @@
                     data-price="18"
                     data-image="/img/soil.jpg"
                 >
-                    <img src="/img/cart.png">
+                    <img src="img/cart.png">
                     <span class="price">18 SAR</span>
                 </button>
 

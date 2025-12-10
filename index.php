@@ -1,57 +1,67 @@
+<?php
+$servername = "localhost"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "plantoria"; 
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>Plantoria</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="icon" href="/img/icon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/icon.png">
 </head>
 
 <body>
 
     <nav class="navbar">
-    <div class="nav-right">
-        <a href="index.html"><img src="/img/logo.png" class="logo"></a>
-    </div>
+        <div class="nav-right">
+            <a href="index.php"><img src="img/logo.png" class="logo"></a>
+        </div>
 
-    <div class="nav-center">
-        <a href="index.html">Home</a>
-        <a href="indoor.html">Indoor</a>
-        <a href="outdoor.html">Outdoor</a>
-        <a href="accessories.html">Accessories</a>
-    </div>
+        <div class="nav-center">
+            <a href="index.php">Home</a>
+            <a href="indoor.php">Indoor</a>
+            <a href="outdoor.php">Outdoor</a>
+            <a href="accessories.php">Accessories</a>
+        </div>
 
-    <div class="nav-left">
-        <a href="cart.html">
-            <img src="/img/cart_logo.png" class="cart-icon">
-        </a>
-    </div>
-</nav>
-
+        <div class="nav-left">
+            <a href="cart.php">
+                <img src="img/cart_logo.png" class="cart-icon">
+            </a>
+        </div>
+    </nav>
 
     <h2>Where every plant finds glory</h2>
 
     <div class="slider">
         <button class="slide-btn prev">&#10094;</button>
 
-
         <div class="slides">
-            <!--indoor-->
+            <!-- indoor -->
             <div class="slide">
-                <img src="/img/monstera.jpg" alt="Indoor plants">
+                <img src="img/monstera.jpg" alt="Indoor plants">
                 <div class="slide-content">
                     <h2>Indoor Plants</h2>
                     <p>Brighten your home with easy care indoor plants.</p>
-                    <a href="indoor.html" class="slide-link">Browse Indoor</a>
+                    <a href="indoor.php" class="slide-link">Browse Indoor</a>
                 </div>
             </div>
 
             <!-- outdoor -->
             <div class="slide">
-                <img src="/img/hibiscus.jpg" alt="Outdoor plants">
+                <img src="img/hibiscus.jpg" alt="Outdoor plants">
                 <div class="slide-content">
                     <h2>Outdoor Plants</h2>
                     <p>Colorful flowers and strong outdoor greenery.</p>
-                    <a href="outdoor.html" class="slide-link">Browse Outdoor</a>
+                    <a href="outdoor.php" class="slide-link">Browse Outdoor</a>
                 </div>
             </div>
         </div>
@@ -64,7 +74,6 @@
       var slides = document.querySelectorAll('.slide');
       var slidesWrapper = document.querySelector('.slides');
 
-
       function showSlide(index) {
         if (index < 0) {
           index = slides.length - 1;
@@ -76,7 +85,6 @@
         slidesWrapper.style.transform = 'translateX(' + (-100 * currentSlide) + '%)';
       }
 
-      
       document.querySelector('.next').onclick = function () {
         showSlide(currentSlide + 1);
       };
