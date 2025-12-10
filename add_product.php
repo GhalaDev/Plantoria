@@ -1,43 +1,49 @@
 <?php
 // الاتصال بقاعدة البيانات
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "plantoria";
+include('db.php');
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// التحقق من الاتصال
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if(isset($_POST['add_product'])){
     $name = $_POST['name'];
     $price = $_POST['price'];
+    $description = $_POST['description'];
     $category = $_POST['category'];
 
-    // استعلام لإضافة منتج جديد
-    $sql = "INSERT INTO products (name, price, category) VALUES ('$name', '$price', '$category')";
-    
-    if ($conn->query($sql) === TRUE) {
-        echo "New product added successfully!";
+    $query = "INSERT INTO products (name, price, description, category) VALUES ('$name', '$price', '$description', '$category')";
+    $result = mysqli_query($conn, $query);
+
+    if($result){
+        echo "تم إضافة المنتج بنجاح!";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "فشل إضافة المنتج!";
     }
 }
 ?>
 
-<!-- نموذج لإضافة منتج -->
-<form method="POST" action="add_product.php">
-    <label for="name">Product Name:</label>
-    <input type="text" name="name" id="name" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
 
-    <label for="price">Price:</label>
-    <input type="text" name="price" id="price" required>
+    <h2>Add New Product</h2>
+    <form method="POST" action="add_product.php">
+        <label for="name">Product Name:</label>
+        <input type="text" name="name" required><br><br>
 
-    <label for="category">Category:</label>
-    <input type="text" name="category" id="category" required>
+        <label for="price">Price:</label>
+        <input type="number" name="price" required><br><br>
 
-    <input type="submit" value="Add Product">
-</form>
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea><br><br>
+
+        <label for="category">Category:</label>
+        <input type="text" name="category" required><br><br>
+
+        <input type="submit" name="add_product" value="Add Product">
+    </form>
+
+</body>
+</html>

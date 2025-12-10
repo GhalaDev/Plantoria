@@ -1,23 +1,32 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "plantoria";
+// الاتصال بقاعدة البيانات
+include('db.php');
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+if(isset($_GET['id'])){
+    $product_id = $_GET['id'];
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    $query = "DELETE FROM products WHERE id = '$product_id'";
+    $result = mysqli_query($conn, $query);
 
-if (isset($_GET['id'])) {
-    $id = $_GET['id'];
-    $sql = "DELETE FROM products WHERE id=$id";
-
-    if ($conn->query($sql) === TRUE) {
-        echo "Product deleted successfully!";
+    if($result){
+        echo "تم حذف المنتج بنجاح!";
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "فشل حذف المنتج!";
     }
 }
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Product</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h2>Product Deleted Successfully</h2>
+    <a href="view_products.php">Go back to product list</a>
+
+</body>
+</html>
