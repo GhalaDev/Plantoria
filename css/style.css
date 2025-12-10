@@ -383,18 +383,16 @@ h2 {
 }
 
 
-
 /* تصميم الجدول */
 table.product-table {
-  width: 100%;
-  max-width: 90%;
+  width: 80%;
+  max-width: 70% ;
   margin: 20px auto;
-  background-color: #e6f9e6; /* خلفية أخضر فاتح */
-  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   border-collapse: collapse;
   text-align: left;
+  border-radius: 15px; /* إضافة الحدود الدائرية للجدول */
+  overflow: hidden; /* التأكد من أن أي محتوى زائد لا يظهر خارج الحدود الدائرية */
 }
 
 th, td {
@@ -410,7 +408,7 @@ th {
 }
 
 td {
-  background-color: #f2f2f2;
+  background-color: #e6f9e6;
 }
 
 .adminlink {
@@ -424,19 +422,32 @@ td {
   text-decoration: underline;
 }
 
-/* تحسين المسافات والتنسيق */
-table.product-table th, table.product-table td {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
 .product-table tr:hover {
   background-color: #e1e1e1;
 }
 
+/* تحديد الزوايا العلوية والسفلية الدائرية */
+.product-table thead th:first-child {
+  border-top-left-radius: 15px; /* زاوية عليا يسار */
+}
+
+.product-table thead th:last-child {
+  border-top-right-radius: 15px; /* زاوية عليا يمين */
+}
+
+.product-table tfoot td:first-child {
+  border-bottom-left-radius: 15px; /* زاوية سفلية يسار */
+}
+
+.product-table tfoot td:last-child {
+  border-bottom-right-radius: 15px; /* زاوية سفلية يمين */
+}
+
+
 /* تصميم خانة إضافة المنتجات */
 .add-product-container {
   width: 80%;
+  max-width: 70% ;
   margin: 30px auto;
   text-align: center;
 }
@@ -449,7 +460,8 @@ table.product-table th, table.product-table td {
 }
 
 .add-product-box h3 {
-  font-size: 24px;
+  color:#2f7d32;
+  font-size: 30px;
   margin-bottom: 20px;
 }
 

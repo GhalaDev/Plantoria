@@ -78,6 +78,7 @@ if ($conn->connect_error) {
       var total = 0;
       for (var i = 0; i < cart.length; i++) {
         var it = cart[i];
+    
         total += (parseFloat(it.price) * it.qty);
         html += ''
           + '<div class="cart-item" data-id="' + it.id + '">'

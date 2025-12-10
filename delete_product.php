@@ -26,7 +26,7 @@ if(isset($_GET['id'])){
 <body>
 
     <h2>Product Deleted Successfully</h2>
-    <a href="view_products.php">Go back to product list</a>
+    <a href="view_product.php">Go back to product list</a>
 
 </body>
 </html>

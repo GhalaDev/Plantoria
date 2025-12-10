@@ -2,6 +2,24 @@
 // الاتصال بقاعدة البيانات
 include('db.php');
 
+// إضافة منتج جديد
+if(isset($_POST['add_product'])){
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $description = $_POST['description'];
+    $category = $_POST['category'];
+
+    $query = "INSERT INTO products (name, price, description, category) VALUES ('$name', '$price', '$description', '$category')";
+    $result = mysqli_query($conn, $query);
+
+    if($result){
+        echo "<p style='color: green;'>Product added successfuly!</p>";
+    } else {
+        echo "<p style='color: red;'>Failed to add product!</p>";
+    }
+}
+
+// عرض المنتجات
 $query = "SELECT * FROM products";
 $result = mysqli_query($conn, $query);
 ?>
@@ -31,39 +49,39 @@ $result = mysqli_query($conn, $query);
         <td><?php echo $row['description']; ?></td>
         <td><?php echo $row['category']; ?></td>
         <td>
-            <a class="adminlink" href="edit_product.php?id=<?php echo $row['id']; ?>">Edit</a> |
+            <a class="adminlink" href="edit_product.php?id=<?php echo $row['id']; ?>">Update</a> |
             <a class="adminlink" href="delete_product.php?id=<?php echo $row['id']; ?>">Delete</a>
         </td>
     </tr>
     <?php } ?>
-</table>
+    </table>
 
+    <!-- خانة إضافة المنتجات -->
+    <div class="add-product-container">
+        <form method="POST" action="">
+            <div class="add-product-box">
+                <h3>Create New Product</h3>
+                <label for="name">Product Name:</label>
+                <input type="text" name="name" required><br><br>
 
-<!-- خانة إضافة المنتجات -->
-<div class="add-product-container">
-    <form action="add_product.php" method="POST">
-        <div class="add-product-box">
-            <h3>Add New Product</h3>
-            <label for="product-name">Product Name:</label>
-            <input type="text" id="product-name" name="product-name" required>
-            
-            <label for="product-price">Price:</label>
-            <input type="number" id="product-price" name="product-price" required>
-            
-            <label for="product-description">Description:</label>
-            <textarea id="product-description" name="product-description" required></textarea>
+                <label for="price">Price:</label>
+                <input type="number" name="price" required><br><br>
 
-            <label for="product-category">Category:</label>
-            <select id="product-category" name="product-category" required>
-                <option value="indoor">Indoor</option>
-                <option value="outdoor">Outdoor</option>
-                <option value="accessories">Accessories</option>
-            </select>
+                <label for="description">Description:</label>
+                <textarea name="description" required></textarea><br><br>
 
-            <button type="submit" class="add-button">Add Product</button>
-        </div>
-    </form>
-</div>
+                <label for="category">Category:</label>
+                <select name="category" required>
+                        <option value="indoor">Indoor</option>
+                        <option value="outdoor">Outdoor</option>
+                        <option value="accessories">Accessories</option>
+                </select>
+                <br><br>
+
+                <button type="submit" name="add_product" class="add-button">Add Product</button>
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>
