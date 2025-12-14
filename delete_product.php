@@ -1,5 +1,4 @@
 <?php
-// الاتصال بقاعدة البيانات
 include('db.php');
 
 if(isset($_GET['id'])){
@@ -9,9 +8,9 @@ if(isset($_GET['id'])){
     $result = mysqli_query($conn, $query);
 
     if($result){
-        echo "تم حذف المنتج بنجاح!";
+        echo "Product deleted successfully";
     } else {
-        echo "فشل حذف المنتج!";
+        echo "Failed to delete product";
     }
 }
 ?>
@@ -26,7 +25,7 @@ if(isset($_GET['id'])){
 <body>
 
     <h2>Product Deleted Successfully</h2>
-    <a href="view_product.php">Go back to product list</a>
+    <a class="adminlink" href="view_product.php">Go back to product list</a>
 
 </body>
 </html>

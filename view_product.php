@@ -1,8 +1,10 @@
 <?php
-// الاتصال بقاعدة البيانات
+
+//connect database
 include('db.php');
 
-// إضافة منتج جديد
+
+//add prooduct
 if(isset($_POST['add_product'])){
     $name = $_POST['name'];
     $price = $_POST['price'];
@@ -19,10 +21,11 @@ if(isset($_POST['add_product'])){
     }
 }
 
-// عرض المنتجات
+//view product
 $query = "SELECT * FROM products";
 $result = mysqli_query($conn, $query);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +36,7 @@ $result = mysqli_query($conn, $query);
 </head>
 <body>
 
+    <!-- Amin table-->
     <h2>View Products</h2>
     <table class="product-table">
     <tr>
@@ -56,7 +60,7 @@ $result = mysqli_query($conn, $query);
     <?php } ?>
     </table>
 
-    <!-- خانة إضافة المنتجات -->
+    <!-- Add product -->
     <div class="add-product-container">
         <form method="POST" action="">
             <div class="add-product-box">

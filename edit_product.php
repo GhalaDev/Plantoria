@@ -19,9 +19,9 @@ if(isset($_POST['update_product'])){
     $result = mysqli_query($conn, $query);
 
     if($result){
-        echo "تم تعديل المنتج بنجاح!";
+        echo "Product updated syccessfuly!";
     } else {
-        echo "فشل تعديل المنتج!";
+        echo "Failed to update product";
     }
 }
 ?>
