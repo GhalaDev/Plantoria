@@ -39,12 +39,15 @@ if ($conn->connect_error) {
         </div>
     </nav>
 
+
+
     <h2>Where every plant finds glory</h2>
 
     <div class="slider">
         <button class="slide-btn prev">&#10094;</button>
 
         <div class="slides">
+            
             <!-- indoor -->
             <div class="slide">
                 <img src="img/monstera.jpg" alt="Indoor plants">
@@ -68,6 +71,9 @@ if ($conn->connect_error) {
 
         <button class="slide-btn next">&#10095;</button>
     </div>
+
+
+
 
     <script>
       var currentSlide = 0;

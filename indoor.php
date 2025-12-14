@@ -1,19 +1,4 @@
 <?php
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbname = "plantoria"; 
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-?>
-
-
-
-<?php
 include('db.php'); 
 
 $sql = "SELECT * FROM products WHERE category = 'Indoor'";
