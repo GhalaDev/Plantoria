@@ -1,7 +1,7 @@
 <?php
-// الاتصال بقاعدة البيانات
 include('db.php');
 
+//view products
 if(isset($_GET['id'])){
     $product_id = $_GET['id'];
     $query = "SELECT * FROM products WHERE id = '$product_id'";

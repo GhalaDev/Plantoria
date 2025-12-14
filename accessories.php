@@ -1,157 +1,104 @@
 <?php
-$servername = "localhost"; 
-$username = "root"; 
-$password = ""; 
-$dbname = "plantoria"; 
+include('db.php'); // الأفضل يكون اتصال DB داخل db.php فقط
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$sql = "SELECT * FROM products WHERE category = 'Accessories'";
+$result = $conn->query($sql);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if (!$result) {
+  die("Query failed: " . $conn->error);
 }
 ?>
-
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Accessories & Tools</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="img/icon.png">
+  <title>Accessories & Tools</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/icon.png">
 </head>
-
 <body>
 
-    <nav class="navbar">
-    <div class="nav-right">
-        <a href="index.php"><img src="img/logo.png" class="logo"></a>
-    </div>
-
-    <div class="nav-center">
-        <a href="index.php">Home</a>
-        <a href="indoor.php">Indoor</a>
-        <a href="outdoor.php">Outdoor</a>
-        <a href="accessories.php">Accessories</a>
-    </div>
-
-    <div class="nav-left">
-        <a href="cart.php">
-            <img src="img/cart_logo.png" class="cart-icon">
-        </a>
-    </div>
+<nav class="navbar">
+  <div class="nav-right">
+    <a href="index.php"><img src="img/logo.png" class="logo"></a>
+  </div>
+  <div class="nav-center">
+    <a href="index.php">Home</a>
+    <a href="indoor.php">Indoor</a>
+    <a href="outdoor.php">Outdoor</a>
+    <a href="accessories.php">Accessories</a>
+  </div>
+  <div class="nav-left">
+    <a href="cart.php"><img src="img/cart_logo.png" class="cart-icon"></a>
+  </div>
 </nav>
+
 <a href="index.php" class="back">← Back</a>
+<h2>Accessories & Gardening Tools</h2>
 
+<div class="cards">
+  <?php while($row = $result->fetch_assoc()) { ?>
+    <div class="card">
+      <h2><?= $row['name'] ?></h2>
 
-    <h2>Accessories & Gardening Tools</h2>
+      <img src="img/<?= $row['name'] ?>.jpg" alt="<?= $row['name'] ?>">
 
-    <div class="cards">
+      <div class="buybar">
+        <button class="cart"
+          data-id="<?= $row['id'] ?>"
+          data-name="<?= $row['name'] ?>"
+          data-price="<?= $row['price'] ?>"
+          data-image="img/<?= $row['name'] ?>.jpg">
+          <img src="img/cart.png" alt="Add to cart">
+          <span class="price"><?= $row['price'] ?> SAR</span>
+        </button>
 
-        <!-- Watering Can -->
-        <div class="card">
-            <h2>Watering Can</h2>
-            <img src="img/watercan.jpg" alt="Watering Can">
-
-            <div class="buybar">
-                <button
-                    class="cart"
-                    data-id="watercan"
-                    data-name="Watering Can"
-                    data-price="25"
-                    data-image="img/watercan.jpg"
-                >
-                    <img src="img/cart.png">
-                    <span class="price">25 SAR</span>
-                </button>
-
-                <a href="#" class="details">Details</a>
-            </div>
-        </div>
-
-        <!-- Gardening Shears -->
-        <div class="card">
-            <h2>Shears</h2>
-            <img src="img/shears.jpg" alt="Shears">
-
-            <div class="buybar">
-                <button
-                    class="cart"
-                    data-id="shears"
-                    data-name="Gardening Shears"
-                    data-price="35"
-                    data-image="/img/shears.jpg"
-                >
-                    <img src="img/cart.png">
-                    <span class="price">35 SAR</span>
-                </button>
-
-                <a href="#" class="details">Details</a>
-            </div>
-        </div>
-
-        <!-- Soil Bag -->
-        <div class="card">
-            <h2>Soil Bag</h2>
-            <img src="img/soil.jpg" alt="Soil Bag">
-
-            <div class="buybar">
-                <button
-                    class="cart"
-                    data-id="soil"
-                    data-name="Soil Bag"
-                    data-price="18"
-                    data-image="/img/soil.jpg"
-                >
-                    <img src="img/cart.png">
-                    <span class="price">18 SAR</span>
-                </button>
-
-                <a href="#" class="details">Details</a>
-            </div>
-        </div>
-
+        <a href="<?= strtolower($row['name']) ?>.php" class="details">Details</a>
+      </div>
     </div>
+  <?php } ?>
+</div>
 
-    <script>
-        function getCart(){ 
-            var data = localStorage.getItem('cart');
-            return data ? JSON.parse(data) : [];
-        }
-        function saveCart(c){ localStorage.setItem('cart', JSON.stringify(c)); }
+<script>
+  function getCart() {
+    var data = localStorage.getItem('cart');
+    return data ? JSON.parse(data) : [];
+  }
 
-        function addToCart(item){
-            var cart = getCart();
-            var idx = -1;
+  function saveCart(c) {
+    localStorage.setItem('cart', JSON.stringify(c));
+  }
 
-            for (var i=0; i<cart.length; i++){
-                if(cart[i].id === item.id){
-                    idx = i;
-                    break;
-                }
-            }
+  function addToCart(item) {
+    var cart = getCart();
+    var idx = -1;
 
-            var qty = item.qty ? item.qty : 1;
-            if(idx >= 0) cart[idx].qty += qty;
-            else cart.push(item);
+    for (var i = 0; i < cart.length; i++) {
+      if (cart[i].id === item.id) { idx = i; break; }
+    }
 
-            saveCart(cart);
-            alert(item.name + " added to cart!");
-        }
+    var qty = item.qty ? item.qty : 1;
 
-        var cartButtons = document.querySelectorAll(".cart");
+    if (idx >= 0) cart[idx].qty += qty;
+    else cart.push({ id:item.id, name:item.name, price:item.price, image:item.image, qty:qty });
 
-        for(var b=0; b<cartButtons.length; b++){
-            cartButtons[b].onclick = function(){
-                addToCart({
-                    id: this.getAttribute("data-id"),
-                    name: this.getAttribute("data-name"),
-                    price: parseFloat(this.getAttribute("data-price") || "0"),
-                    image: this.getAttribute("data-image"),
-                    qty: 1
-                });
-            };
-        }
-    </script>
+    saveCart(cart);
+    alert(item.name + " added to cart!");
+  }
+
+  var cartButtons = document.querySelectorAll(".cart");
+  for (var b = 0; b < cartButtons.length; b++) {
+    cartButtons[b].onclick = function() {
+      addToCart({
+        id: this.getAttribute("data-id"),
+        name: this.getAttribute("data-name"),
+        price: parseFloat(this.getAttribute("data-price") || "0"),
+        image: this.getAttribute("data-image"),
+        qty: 1
+      });
+    };
+  }
+</script>
 
 </body>
 </html>
