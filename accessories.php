@@ -1,5 +1,5 @@
 <?php
-include('db.php'); // الأفضل يكون اتصال DB داخل db.php فقط
+include('db.php'); 
 
 $sql = "SELECT * FROM products WHERE category = 'Accessories'";
 $result = $conn->query($sql);
